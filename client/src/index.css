@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+@import "tailwindcss";
+
+/* Manual dark mode via a `.dark` class on <html>, not just OS preference —
+   matches the toggle behavior from the design-system mockups. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Sora", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Brand — same hex values as the HTML mockups, kept in sync deliberately */
+  --color-indigo: #4640DE;
+  --color-violet: #7C5CFC;
+  --color-coral: #FF7A59;
+
+  /* Semantic state colors — distinct from brand so meaning never overlaps
+     with decoration. AA-checked against their tint backgrounds. */
+  --color-success: #167A50;
+  --color-warning: #A25605;
+  --color-danger: #CE2B1E;
+
+  /* Surfaces and text — overridden per-mode below. Light values are the
+     defaults here. */
+  --color-canvas: #FAF9F5;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F3F2EE;
+  --color-ink: #14141A;
+  --color-ink-soft: #5C5C66;
+  --color-ink-faint: #6B6B74;
+  --color-line: rgb(20 20 26 / 0.08);
+  --color-line-strong: rgb(20 20 26 / 0.13);
+
+  --shadow-glow: 0 10px 28px -8px rgb(70 64 222 / 0.38);
+
+  --radius-xl: 20px;
+}
+
+.dark {
+  --color-indigo: #6C64FF;
+  --color-violet: #9B86FF;
+  --color-coral: #FF8F73;
+
+  --color-success: #3FBE8A;
+  --color-warning: #E0982A;
+  --color-danger: #F2675C;
+
+  --color-canvas: #0A0E1A;
+  --color-surface: #12141F;
+  --color-surface-2: #171A26;
+  --color-ink: #F4F4F6;
+  --color-ink-soft: #A8A8B3;
+  --color-ink-faint: #9494A0;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.13);
+
+  --shadow-glow: 0 10px 28px -8px rgb(108 100 255 / 0.45);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
