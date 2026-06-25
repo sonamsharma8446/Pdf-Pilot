@@ -21,7 +21,7 @@ export function Dashboard() {
   const { entries } = useRecentFiles();
   const navigate = useNavigate();
 
-  const onClickEntry = useCallback((entryId: string, operation: string) => {
+  const onClickEntry = useCallback((_entryId: string, operation: string) => {
     const r = routeForOperation(operation);
     if (r) navigate(r);
   }, [navigate]);
