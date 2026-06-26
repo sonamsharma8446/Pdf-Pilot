@@ -69,7 +69,7 @@ async function renderPage(
 
   await page.render({
     canvasContext: ctx,
-    canvas,
+    canvas:canvas as unknown as HTMLCanvasElement,
     viewport,
   }).promise;
 
